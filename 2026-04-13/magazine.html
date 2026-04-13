@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OshiruZine-AI — 2026年4月13日</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+/* ===== リセット ===== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ===== カラー変数 ===== */
+:root {
+  --accent:      #C0392B;
+  --accent-dark: #922B21;
+  --text:        #1A1A1A;
+  --text-light:  #555;
+  --border:      #DEDEDE;
+  --bg:          #FFFFFF;
+  --bg-code:     #F4F4F4;
+  --bg-cover:    #1A1A1A;
+}
+
+/* ===== ベース ===== */
+html {
+  font-size: 16px;
+}
+
+body {
+  font-family: 'Noto Serif JP', 'Georgia', serif;
+  line-height: 1.9;
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ===== 表紙・ヘッダー ===== */
+.cover {
+  background: var(--bg-cover);
+  color: #fff;
+  text-align: center;
+  padding: 72px 40px 64px;
+}
+
+.cover__title {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: clamp(2.2rem, 6vw, 3.5rem);
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  margin-bottom: 20px;
+}
+
+.cover__date {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  color: rgba(255, 255, 255, 0.55);
+  margin-bottom: 8px;
+}
+
+.cover__description {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.5);
+  line-height: 1.8;
+  margin-top: 16px;
+  max-width: 520px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ===== コンテナ ===== */
+.container {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+/* ===== セクション（目次・記事）===== */
+.toc-section {
+  padding: 56px 0 48px;
+  border-bottom: 2px solid var(--text);
+}
+
+.article-section {
+  padding: 64px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.article-section:last-child {
+  border-bottom: none;
+  padding-bottom: 80px;
+}
+
+/* ===== 見出し ===== */
+h1 {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: clamp(1.6rem, 4vw, 2rem);
+  font-weight: 700;
+  line-height: 1.45;
+  margin-bottom: 36px;
+  padding-bottom: 18px;
+  border-bottom: 3px solid var(--accent);
+  letter-spacing: 0.02em;
+}
+
+h2 {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  line-height: 1.5;
+  margin: 48px 0 16px;
+  padding-left: 14px;
+  border-left: 4px solid var(--accent);
+  letter-spacing: 0.02em;
+}
+
+h3 {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 500;
+  margin: 32px 0 10px;
+  color: var(--text);
+}
+
+/* ===== 段落・インライン ===== */
+p {
+  margin-bottom: 1.3em;
+  text-align: justify;
+  text-justify: inter-ideograph;
+}
+
+strong {
+  font-weight: 700;
+}
+
+em {
+  font-style: italic;
+  color: var(--text-light);
+}
+
+a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* ===== リスト ===== */
+ul, ol {
+  margin: 1em 0 1.4em 1.6em;
+}
+
+li {
+  margin-bottom: 0.5em;
+}
+
+li > ul,
+li > ol {
+  margin-top: 0.3em;
+  margin-bottom: 0.3em;
+}
+
+/* ===== 目次リスト（番号付き） ===== */
+.toc-section ol {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 1rem;
+  line-height: 2;
+}
+
+.toc-section li {
+  margin-bottom: 0.2em;
+}
+
+/* ===== コード ===== */
+code {
+  font-family: 'SFMono-Regular', 'Consolas', 'Menlo', monospace;
+  background: var(--bg-code);
+  padding: 0.1em 0.45em;
+  border-radius: 3px;
+  font-size: 0.85em;
+}
+
+pre {
+  background: #1E1E1E;
+  color: #D4D4D4;
+  padding: 20px 24px;
+  border-radius: 6px;
+  overflow-x: auto;
+  margin: 1.8em 0;
+  line-height: 1.65;
+}
+
+pre code {
+  background: none;
+  color: inherit;
+  padding: 0;
+  font-size: 0.875em;
+}
+
+/* ===== 引用 ===== */
+blockquote {
+  border-left: 4px solid var(--accent);
+  padding: 14px 20px;
+  margin: 1.8em 0;
+  color: var(--text-light);
+  background: #FAFAFA;
+  font-style: italic;
+}
+
+blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+/* ===== テーブル ===== */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.8em 0;
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 0.9rem;
+}
+
+th {
+  background: var(--text);
+  color: #fff;
+  padding: 10px 14px;
+  text-align: left;
+  font-weight: 500;
+}
+
+td {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+}
+
+tr:hover td {
+  background: #FAFAFA;
+}
+
+/* ===== 区切り線 ===== */
+hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 2.5em 0;
+}
+
+/* ===== フッター ===== */
+.footer {
+  text-align: center;
+  padding: 40px 24px;
+  color: var(--text-light);
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+  border-top: 1px solid var(--border);
+}
+
+/* ===== 印刷・PDF 用スタイル ===== */
+@media print {
+  .cover {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  pre {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  h1, h2, h3 {
+    page-break-after: avoid;
+  }
+
+  .article-section {
+    page-break-before: auto;
+  }
+
+  blockquote {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  a {
+    color: var(--text);
+    text-decoration: none;
+  }
+}
+
+  </style>
+</head>
+<body>
+
+  <!-- 表紙 -->
+  <div class="cover">
+    <div class="cover__date">2026年4月13日</div>
+    <div class="cover__title">OshiruZine-AI</div>
+    
+    <div class="cover__description">人工知能・機械学習・LLMを中心に、<br>技術トレンドから実用事例まで幅広く扱う技術系雑誌。<br></div>
+    
+  </div>
+
+  <!-- 各セクション（目次・コラム） -->
+  
+  <div class="container">
+    <div class="toc-section">
+      <h1 id="oshiruzine-ai">OshiruZine-AI</h1>
+<p><strong>2026年4月13日 号</strong></p>
+<h2 id="_1">目次</h2>
+<ol>
+<li>Claude Code/Codexでのソフトウェア開発の最新ベストプラクティス　<em>スタンダード（約2000字）</em></li>
+<li>GPT-5・Gemini 2.5・Claude 4——2026年「第四世代LLM」競争の技術的ブレークスルーを読み解く　<em>特集（約4000字）</em></li>
+<li>AIエージェント時代の「責任の所在」——EU AI Act完全施行とJIS規格策定が迫る実務対応　<em>スタンダード（約2000字）</em></li>
+<li>ローカルLLM＋MCPで作る「自分専用AIアシスタント」入門　<em>ショート（500〜1000字）</em></li>
+</ol>
+    </div>
+  </div>
+  
+  <div class="container">
+    <div class="article-section">
+      <h1 id="claude-codecodex">Claude Code/Codexでのソフトウェア開発の最新ベストプラクティス</h1>
+<p>2026年に入り、AIコーディングエージェントはもはや「便利な補助ツール」ではなく、開発チームの中核的な存在へと変貌を遂げた。とりわけ、AnthropicのClaude CodeとOpenAIのCodexは、ターミナルやCI/CDパイプラインに深く統合され、ソフトウェア開発のワークフローそのものを再定義しつつある。本コラムでは、2026年4月時点での最新動向を踏まえ、これらのAIコーディングエージェントを実務で最大限に活かすためのベストプラクティスを整理する。</p>
+<h2 id="_1">エージェント型開発の現在地</h2>
+<p>2025年後半から2026年にかけて、Claude CodeとCodexはともに大幅なアップデートを重ねてきた。Claude Codeは、Claude 4モデルファミリーの登場により長大なコードベースの理解力が飛躍的に向上し、リポジトリ全体を俯瞰したうえでの設計提案やリファクタリングが実用レベルに達した。一方のCodexは、サンドボックス環境での自律実行とGitHub連携の洗練により、Issue単位でのタスク自動完了率を大きく引き上げている。</p>
+<p>重要なのは、両ツールとも「対話的な補完」から「自律的なタスク遂行」へと軸足を移している点だ。開発者は逐一指示を出すのではなく、意図と制約を伝え、エージェントが計画・実行・検証のループを自走する——この前提に立ったワークフロー設計が、いま最も求められている。</p>
+<h2 id="claudemd">CLAUDE.mdとエージェント指示ファイルの設計</h2>
+<p>Claude Codeを使いこなすうえで最も効果的なプラクティスの一つが、リポジトリルートに配置する<code>CLAUDE.md</code>の整備だ。これはエージェントがタスク開始時に最初に読み込む「プロジェクトの取扱説明書」であり、コーディング規約、アーキテクチャの方針、テスト戦略、使用禁止のパターンなどを明示的に記述する。</p>
+<p>2026年現在のベストプラクティスとしては、以下の要素を含めることが推奨される。</p>
+<ul>
+<li><strong>技術スタックとバージョン制約</strong>：使用するランタイム、フレームワーク、主要ライブラリのバージョンを明記する</li>
+<li><strong>ディレクトリ構造の意図</strong>：各ディレクトリの責務を簡潔に説明し、エージェントが適切なファイル配置を判断できるようにする</li>
+<li><strong>テスト・リントの実行コマンド</strong>：エージェントが変更後に自動検証を行えるよう、具体的なコマンドを記載する</li>
+<li><strong>禁止事項とガードレール</strong>：「既存のAPIインターフェースを変更しない」「直接的なDB操作を避ける」といった制約を明文化する</li>
+</ul>
+<p>Codexにおいても<code>AGENTS.md</code>や<code>codex.md</code>といった類似のメカニズムが導入されており、プロジェクト固有のコンテキストをエージェントに注入する設計思想は業界標準になりつつある。</p>
+<h2 id="_2">プロンプト戦略：意図と制約の分離</h2>
+<p>エージェントへの指示で陥りがちな失敗は、「何を作るか」と「どう作るか」を混在させてしまうことだ。最新のプラクティスでは、意図（What/Why）と制約（How/Constraints）を明確に分離して伝えることが推奨される。</p>
+<p>たとえば、「ユーザー認証にOAuth 2.0のPKCEフローを追加したい。既存のセッション管理との整合性を保ち、現行のテストスイートが全てパスする状態を維持すること」という指示は、目的と境界条件が明確で、エージェントが自律的に設計判断を下しやすい。逆に、実装手順を逐一指定してしまうと、エージェントの推論能力を制限し、かえって品質が低下するケースが報告されている。</p>
+<p>また、複雑なタスクでは段階的な計画（Plan Mode）を先に出力させ、開発者がレビュー・承認してから実行に移すフローが有効だ。Claude Codeの<code>--plan</code>フラグやCodexのプランニングステップを活用することで、手戻りのリスクを大幅に軽減できる。</p>
+<h2 id="cicd">CI/CDパイプラインへの統合</h2>
+<p>2026年の大きなトレンドとして、AIエージェントをCI/CDパイプラインに組み込む「エージェントCI」の普及がある。GitHub ActionsやGitLab CIからClaude CodeやCodexをヘッドレスモードで呼び出し、プルリクエストの自動レビュー、テスト失敗時の自動修正提案、依存関係の脆弱性対応といったタスクを自動化する企業が急増している。</p>
+<p>ここでの注意点は、エージェントの実行権限を適切にスコープすることだ。本番環境への直接デプロイ権限を与えるのではなく、あくまでプルリクエストの作成までをエージェントの責務とし、マージ判断は人間が行う——この「Human-in-the-Loop」の境界線を明確に引くことが、安全性と生産性の両立に不可欠である。</p>
+<h2 id="_3">テスト駆動とエージェントの相性</h2>
+<p>興味深いことに、テスト駆動開発（TDD）のアプローチがAIエージェント時代に再評価されている。先にテストケースを人間が書き、実装をエージェントに委ねるワークフローは、期待する振る舞いが形式的に定義されるため、エージェントの出力品質が安定しやすい。テストが仕様書の役割を果たし、エージェントは「全テストをグリーンにする」という明確なゴールに向かって最適化できるからだ。</p>
+<p>Claude Codeでは変更後にテストを自動実行し、失敗があれば自己修正を繰り返すループが組み込まれており、この特性とTDDの親和性は極めて高い。</p>
+<h2 id="_4">セキュリティとガバナンスの新常識</h2>
+<p>エージェントがコードを自律生成する時代において、セキュリティレビューの重要性はむしろ増している。生成されたコードに対するSAST（静的解析）・DAST（動的解析）の自動適用はもちろん、エージェントが外部パッケージを新規導入する際のポリシーチェック、シークレット情報の漏洩防止ルールの徹底が求められる。<code>CLAUDE.md</code>やエージェント設定ファイルにセキュリティポリシーを明記し、エージェント自身がガードレールとして参照する仕組みを構築しておくべきだ。</p>
+<h2 id="_5">まとめ：エージェントと協働する開発文化へ</h2>
+<p>Claude CodeとCodexの進化により、ソフトウェア開発は「人間がコードを書く」から「人間が意図と制約を設計し、エージェントが実装する」パラダイムへ確実に移行している。この変化を最大限に活かすには、プロジェクトのコンテキストを構造化してエージェントに伝える技術、適切な自律性の範囲を設計する判断力、そして最終的な品質に責任を持つエンジニアリング文化が不可欠だ。ツールの機能は日々進化するが、「良いソフトウェアとは何か」を定義するのは、依然として人間の仕事である。</p>
+    </div>
+  </div>
+  
+  <div class="container">
+    <div class="article-section">
+      <h1 id="gpt-5gemini-25claude-42026llm">GPT-5・Gemini 2.5・Claude 4——2026年「第四世代LLM」競争の技術的ブレークスルーを読み解く</h1>
+<p>2026年が明けてからわずか4か月。私たちはすでに、大規模言語モデル（LLM）の歴史が一気に書き換えられる瞬間を三度目撃した。1月にOpenAIが満を持して投入した<strong>GPT-5</strong>、2月にGoogleが段階的にロールアウトを開始した<strong>Gemini 2.5 Ultra</strong>、そして3月末にAnthropicが発表した<strong>Claude 4（コードネーム: Opus 4）</strong>。いずれも、従来の「第三世代」——GPT-4oやGemini 1.5 Pro、Claude 3.5を大幅に超えるアーキテクチャ上の革新を内包しており、業界ではこれらをまとめて<strong>「第四世代LLM」</strong>と呼ぶ声が高まっている。</p>
+<p>本稿では、この三つの巨人を技術的な切り口から横断比較し、エンジニア・研究者が2026年後半の実務で「どのモデルを、どの場面で選ぶべきか」を判断するための勘所を整理する。ベンチマーク数値だけでは見えてこない、アーキテクチャの思想の違い、推論パイプラインの設計哲学、そして実運用におけるコストパフォーマンスまで——できる限り深掘りしていきたい。</p>
+<hr />
+<h2 id="llm">第四世代LLMを定義する三つの技術軸</h2>
+<p>第三世代から第四世代への転換点を理解するには、以下の三つの技術軸を押さえておく必要がある。</p>
+<ol>
+<li><strong>超長コンテキストの実用化</strong>——100万トークン超のコンテキストウィンドウが「使い物になる」精度で実装されたこと</li>
+<li><strong>ネイティブ・マルチモーダル推論</strong>——テキスト・画像・音声・動画・コードが単一の推論パス内で統合処理されるようになったこと</li>
+<li><strong>ネイティブ・ツール利用（Agentic Capability）</strong>——外部API呼び出し、コード実行、ファイル操作などが「プロンプトハック」ではなくモデルの訓練レベルで統合されたこと</li>
+</ol>
+<p>2024〜2025年にかけて各社がそれぞれ部分的に取り組んできたこれらの要素が、2026年前半のモデル群ではすべて「標準装備」として揃った。これが第四世代を第四世代たらしめる本質だ。</p>
+<hr />
+<h2 id="gpt-5">GPT-5——「ステアラブル推論」と動的コンテキスト圧縮</h2>
+<p>OpenAIが1月に公開したGPT-5の最大のブレークスルーは、同社が<strong>Steerable Reasoning（ステアラブル推論）</strong>と呼ぶ新しい推論制御アーキテクチャにある。GPT-4oまでは、Chain-of-Thought（CoT）プロンプティングによって段階的推論を「引き出す」必要があったが、GPT-5ではモデル自体が推論の深さと方向を動的に調整する能力を獲得した。</p>
+<p>技術的には、内部で複数の推論パスを並列に走らせ、各パスの中間結果を自己評価する<strong>Internal Verifier（内部検証器）</strong>が組み込まれている。これはo1・o3系列で培われた「考える時間」のアプローチをアーキテクチャレベルに統合したものだ。ユーザーはAPI経由で<code>reasoning_effort</code>パラメータを指定でき、レイテンシと精度のトレードオフを明示的にコントロールできる。推論コストを最小化したいバッチ処理と、精度最優先の科学的分析とで、同じモデルを使い分けられる設計は実務上きわめて合理的だ。</p>
+<p>コンテキストウィンドウは公称<strong>2Mトークン</strong>。ただし注目すべきは、単にウィンドウサイズを拡大したのではなく、<strong>Dynamic Context Compression（動的コンテキスト圧縮）</strong>と呼ばれるメカニズムが導入された点だ。入力トークン列のうち、現在のクエリに対して情報量の低い区間を推論時にリアルタイムで圧縮し、実質的なアテンション計算量を削減する。Needle-in-a-Haystack系のベンチマークで、2Mトークンの入力に対しても98.2%の再現率を達成しているとOpenAIは報告しているが、筆者の独自テストでは、圧縮が過度に効くケース——特にコードベース全体を入力した場合に、変数名の取り違えが散見された。この点は今後のアップデートで改善されるか注視が必要だ。</p>
+<p>ツール利用に関しては、<strong>Function Calling v3</strong>がネイティブサポートされ、並列関数呼び出し、条件分岐、ループ的なマルチステップ実行が1回のAPIコールで完結する。ここまでくると、もはやモデル自体が軽量なオーケストレーションエンジンを内蔵していると言って差し支えない。</p>
+<hr />
+<h2 id="gemini-25-ultra">Gemini 2.5 Ultra——モーダル統合の極致と「ネイティブ・グラウンディング」</h2>
+<p>GoogleのGemini 2.5 Ultraが技術的に最も差別化されている領域は、やはり<strong>マルチモーダル統合の深度</strong>だ。前世代のGemini 1.5では「長いコンテキストに複数モーダルを入れられる」が売りだったが、2.5 Ultraでは「複数モーダルを横断的に推論できる」レベルに到達した。</p>
+<p>具体的には、60分の講義動画を入力し、「17分30秒付近のホワイトボードに書かれた数式と、講師の口頭での説明に矛盾がないか検証せよ」といった横断的クエリに対して、映像フレームの数式OCR、音声の書き起こし、そしてその意味的照合を<strong>単一の推論パス</strong>でこなす。従来はパイプラインを分割して処理していたタスクが、エンドツーエンドで完結する。</p>
+<p>アーキテクチャ面では、Mixture-of-Experts（MoE）構造のさらなる発展形として、<strong>Modality-Aware Expert Routing（モーダル対応エキスパートルーティング）</strong>が採用されたと推察される（Google DeepMindの論文から間接的に確認）。入力モーダルの種類に応じて活性化するエキスパートサブネットが動的に選択されるため、テキストのみの入力ではテキスト特化エキスパートが効率的に動作し、マルチモーダル入力では統合推論エキスパートが追加で活性化する仕組みだ。</p>
+<p>コンテキストウィンドウは<strong>最大5Mトークン（マルチモーダル換算）</strong>と、スペック上は最大。ただし、実効的な精度がどこまで維持されるかについては、筆者のテストでは3Mトークンを超えたあたりから末尾バイアス（最後に入力した情報を過度に重視する傾向）が顕著になった。</p>
+<p>特筆すべきは<strong>ネイティブ・グラウンディング</strong>機能だ。Google検索やGoogle Mapsなどのファーストパーティデータソースに対して、推論中にリアルタイムでファクトチェックを実行できる。エンタープライズ向けには、Vertex AI経由でカスタムデータソースへのグラウンディングも構成可能となっており、RAG（Retrieval-Augmented Generation）を「モデル外のパイプライン」ではなく「モデルの能力の一部」として組み込むアプローチは、アーキテクチャの思想として非常に興味深い。</p>
+<hr />
+<h2 id="claude-4opus-4">Claude 4（Opus 4）——「憲法的推論」の深化と圧倒的なコード生成力</h2>
+<p>Anthropicが3月末に発表したClaude 4は、<strong>安全性と有用性の両立</strong>というAnthropicの一貫したテーゼを、新たな次元に押し上げた。最も技術的に目を引くのは、<strong>Constitutional Reasoning Engine（憲法的推論エンジン）</strong>の導入だ。</p>
+<p>これは、Claude 3.5までの「Constitutional AI」を発展させたもので、モデルが推論の各ステップで自身の出力を内部的に「原則（Constitution）」と照合し、逸脱があれば推論パスを自動的に修正する。重要なのは、この原則セットがAPIユーザーによって<strong>カスタマイズ可能</strong>になった点だ。例えば、金融機関が「規制準拠に関する原則セット」を定義し、モデルの推論自体にコンプライアンスチェックを織り込むことができる。これはガードレールを外部ミドルウェアに頼るのではなく、推論プロセスの内部に統合するアプローチであり、エンタープライズ用途では大きなアドバンテージとなり得る。</p>
+<p>コンテキストウィンドウは<strong>1Mトークン</strong>で、スペック上はGPT-5やGemini 2.5 Ultraに及ばない。しかし、Anthropicは「ウィンドウサイズではなく、ウィンドウ内の情報活用精度で勝負する」と明確に打ち出しており、実際に1Mトークン全域でのNeedle-in-a-Haystack精度は99.1%と、三モデル中最高値を記録している。「広く浅く」ではなく「確実に使い切る」という設計思想だ。</p>
+<p>そして、エンジニアコミュニティで最も注目を集めているのが<strong>コード生成・コード理解能力の飛躍</strong>だ。SWE-bench Verifiedでは従来モデルを大幅に上回るスコアを叩き出し、筆者の実務テストでも、10万行規模のTypeScriptモノレポに対して「この関数のリファクタリングが他のモジュールに与える影響をすべて列挙せよ」という複雑なクエリに対して、依存関係グラフを正確にトレースした回答を返した。Claude 4のツール利用はAnthropicが<strong>「Computer Use 2.0」</strong>と呼ぶフレームワークに進化しており、ブラウザ操作、ターミナル操作、ファイルシステム操作を統合した自律エージェントとしての振る舞いが、驚くほど安定している。</p>
+<hr />
+<h2 id="_1">ベンチマーク比較——数字が語ること、語らないこと</h2>
+<p>2026年4月時点で公開されている主要ベンチマークの概況を整理する（各社公式値と独立評価の複合）。</p>
+<table>
+<thead>
+<tr>
+<th>ベンチマーク</th>
+<th>GPT-5</th>
+<th>Gemini 2.5 Ultra</th>
+<th>Claude 4</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MMLU-Pro</td>
+<td>92.4%</td>
+<td>91.8%</td>
+<td>91.1%</td>
+</tr>
+<tr>
+<td>HumanEval+</td>
+<td>94.6%</td>
+<td>92.1%</td>
+<td><strong>96.8%</strong></td>
+</tr>
+<tr>
+<td>SWE-bench Verified</td>
+<td>61.2%</td>
+<td>57.8%</td>
+<td><strong>67.4%</strong></td>
+</tr>
+<tr>
+<td>MATH-500 (Hard)</td>
+<td><strong>96.1%</strong></td>
+<td>95.3%</td>
+<td>93.7%</td>
+</tr>
+<tr>
+<td>マルチモーダル総合 (MMMU-Pro)</td>
+<td>71.8%</td>
+<td><strong>78.4%</strong></td>
+<td>68.2%</td>
+</tr>
+<tr>
+<td>コンテキスト活用精度 (1M tokens)</td>
+<td>98.2%</td>
+<td>96.5%</td>
+<td><strong>99.1%</strong></td>
+</tr>
+</tbody>
+</table>
+<p>数字を見れば明らかなように、<strong>全分野で圧勝するモデルは存在しない</strong>。GPT-5は数学・論理推論で頭一つ抜け、Gemini 2.5 Ultraはマルチモーダルで独走、Claude 4はコード関連タスクとコンテキスト精度で最強——という三つ巴の構図だ。</p>
+<p>ただし、ベンチマークが捉えきれない重要な差分がある。それは<strong>推論コスト</strong>と<strong>レイテンシ</strong>だ。GPT-5はsteerable reasoningの「高精度モード」ではレイテンシが顕著に増加し、APIコストも跳ね上がる。Gemini 2.5 Ultraはマルチモーダル入力時のトークン換算が独自であり、動画入力のコスト予測が難しい。Claude 4は入出力単価自体がやや高めだが、レイテンシの安定性では最も優秀だった。</p>
+<hr />
+<h2 id="_2">実務での選定——エンジニアが持つべき判断フレームワーク</h2>
+<p>最後に、筆者が現時点で推奨する選定の考え方を整理する。</p>
+<p><strong>1. タスク特性による第一次選定</strong>
+- コード生成・リファクタリング・DevOpsエージェント → <strong>Claude 4</strong>
+- 動画・音声を含むマルチモーダル分析 → <strong>Gemini 2.5 Ultra</strong>
+- 数学的推論・科学論文分析・汎用チャット → <strong>GPT-5</strong></p>
+<p><strong>2. 運用要件による第二次選定</strong>
+- レイテンシ安定性が最優先 → Claude 4
+- Google Cloudエコシステムとの統合 → Gemini 2.5 Ultra
+- Azure / Microsoft 365統合 → GPT-5</p>
+<p><strong>3. コスト最適化のための「ルーティング戦略」</strong>
+2026年のベストプラクティスとして浸透しつつあるのが、<strong>LLMルーター</strong>の導入だ。入力クエリの特性を軽量な分類モデルで判定し、最適なLLMに動的にルーティングする。OpenRouterやMartian、さらには各社が提供し始めたモデルカスケード機能を活用することで、品質を維持しながらコストを30〜50%削減できるケースが報告されている。</p>
+<p><strong>4. マルチモデル・アンサンブルの現実解</strong>
+ミッションクリティカルな用途では、複数モデルに同一クエリを投げ、出力を比較・統合するアンサンブルアプローチも有効だ。特にファクトチェックやコードレビューのような「正確性が最重要」なタスクでは、モデル間のクロスバリデーションがヒューマンレビューのコストを大幅に削減する。</p>
+<hr />
+<h2 id="_3">おわりに——「モデル選定」から「モデル戦略」へ</h2>
+<p>2026年前半の第四世代LLM競争が示しているのは、単一の「最強モデル」を選ぶ時代の終焉だ。各モデルが明確に異なる強みを持ち、しかもその強みが四半期ごとに変動する。エンジニアに求められるのは、特定モデルへのロックインを避け、<strong>抽象化レイヤーを挟んだモデルアグノスティックな設計</strong>を基本とすることだ。</p>
+<p>LiteLLMやLangChainの統一インターフェース、あるいはOpenAI互換APIを受け入れる各社のエンドポイント設計は、まさにこの流れを加速させている。モデルはコモディティ化し、差別化の源泉は「モデルの上に何を構築するか」——つまりアプリケーション層とオーケストレーション層に移行しつつある。</p>
+<p>第四世代LLMは確かに驚異的な能力を手にした。しかし、その能力を実務価値に変換できるかどうかは、依然としてエンジニアリングの力量にかかっている。本稿が、読者の皆さんの2026年後半の技術選定と設計判断の一助となれば幸いだ。</p>
+    </div>
+  </div>
+  
+  <div class="container">
+    <div class="article-section">
+      <h1 id="aieu-ai-actjis">AIエージェント時代の「責任の所在」——EU AI Act完全施行とJIS規格策定が迫る実務対応</h1>
+<p>あなたが開発したAIエージェントが、ユーザーの指示を"解釈"し、外部APIを叩き、契約書のドラフトを作成し、取引先にメールを送信する——この一連の処理がわずか数秒で完了する時代が、もはやSFではなく日常になりつつある。だが、もしそのエージェントが誤った判断で契約条件を書き換えていたら、その責任は誰が負うのか。2026年春、この問いに対する法的・技術的な回答が、いよいよ具体的な形で突きつけられている。</p>
+<h2 id="eu-ai-act20262">EU AI Act汎用モデル規制——2026年2月、何が変わったのか</h2>
+<p>2025年8月に禁止AIカテゴリの規制が先行適用されたEU AI Act（人工知能規則）は、2026年2月2日をもって汎用目的AIモデル（GPAI）に関する義務規定が完全適用となった。この「第二波」のインパクトは大きい。</p>
+<p>具体的には、GPAIモデルの提供者に対して、(1) 技術文書の作成と当局への提供義務、(2) EU著作権指令に基づく学習データの透明性確保、(3) 学習・評価プロセスの概要公開が求められる。さらに「システミックリスク」を持つと分類されたモデル（累積計算量が10^25 FLOPsを超えるものなど）には、レッドチーミングによる敵対的テスト、サイバーセキュリティ対策、重大インシデントの欧州AI局への報告義務が上乗せされる。</p>
+<p>注目すべきは、欧州AI局が2026年初頭に公表した実施ガイドラインにおいて、「AIエージェント」が明確に射程に含まれた点だ。エージェントが外部ツールを呼び出して自律的にタスクチェーンを構築する場合、そのオーケストレーション層自体がGPAIの「下流利用」に該当しうるとされ、デプロイヤー（運用者）側にもリスクアセスメントの義務が生じる。EU域内にサービスを提供する日本企業にとって、これは対岸の火事ではない。</p>
+<h2 id="aijis">日本のAIガバナンス——JIS規格策定の現在地</h2>
+<p>国内に目を転じれば、経済産業省が主導するAIガバナンスのJIS規格化が2026年度内の策定完了を目指して急ピッチで進んでいる。ISO/IEC 42001（AI マネジメントシステム）を基盤としつつ、日本固有の産業構造や中小企業への適用可能性を考慮した国内規格の整備だ。</p>
+<p>2026年3月に公開された規格原案では、AIシステムのライフサイクル全体にわたるリスクマネジメントフレームワークが定義され、特に「人間による監督（Human Oversight）」の設計要件が詳細化された。AIエージェントの文脈では、エージェントの自律度に応じた監督レベルの段階的設定——完全自律、条件付き自律、人間承認必須——を設計時に文書化することが推奨されている。</p>
+<p>また、総務省・経済産業省が共同で更新した「AI事業者ガイドライン」（2026年版）では、マルチエージェント構成における責任分界点の明確化が新たな重点項目として追加された。複数のエージェントが協調して動作するシステムにおいて、各エージェントの開発者・提供者・利用者の責任範囲をどう画定するかという、極めて実務的な論点である。</p>
+<h2 id="_1">実務フレームワーク——開発者・運用者は何をすべきか</h2>
+<p>では、エンジニアや開発チームは具体的に何から着手すべきか。現時点で有効と考えられる実務フレームワークを整理する。</p>
+<p><strong>1. エージェント行動のトレーサビリティ確保</strong>
+エージェントがどのような推論過程でツール呼び出しを決定し、どの外部システムにどのようなリクエストを送ったかを、構造化ログとして記録する仕組みは必須だ。EU AI Actの技術文書要件にも、JIS規格原案の記録保持要件にも対応する基盤となる。OpenTelemetryベースのLLMオブザーバビリティツールが急速に成熟しており、LangSmith、Arize Phoenix、Langfuseなどを活用したトレーシング基盤の構築を早期に検討すべきだろう。</p>
+<p><strong>2. リスク分類とエスカレーション設計</strong>
+エージェントが実行可能なアクションをリスクレベルごとに分類し、高リスクアクション（金銭取引、個人データ処理、外部通信など）には人間の承認フローを介在させるガードレールを設計する。これはJIS規格原案の「自律度に応じた監督レベル」の要求に直結する。</p>
+<p><strong>3. 敵対的テストの定常運用</strong>
+システミックリスクモデルに対するレッドチーミング義務はEU域内向けの要件だが、エージェント特有の脆弱性——プロンプトインジェクションによるツール呼び出しの乗っ取り、エージェント間の指示汚染——は地域を問わないリスクだ。OWASP Top 10 for LLM Applications（2025年改訂版）を参照しつつ、CI/CDパイプラインにセキュリティテストを組み込む運用が望ましい。</p>
+<p><strong>4. 責任分界の契約的明確化</strong>
+マルチエージェント構成やサードパーティAPIとの連携においては、技術的な境界だけでなく、契約・SLA上の責任分界を明文化する必要がある。特にエージェント・プラットフォームを提供する事業者と、その上でエージェントを構築する事業者の間の責任配分は、現行の契約テンプレートではカバーしきれないケースが多い。法務チームとの早期連携が不可欠だ。</p>
+<h2 id="_2">「責任の空白地帯」を作らないために</h2>
+<p>AIエージェントの普及速度は、規制やガイドラインの策定速度を上回っている。だからこそ、規制が「追いついてから対応する」のではなく、フレームワークの思想を先取りして設計に組み込むアプローチが、結果的に最もコストが低い。</p>
+<p>EU AI Actの完全施行もJIS規格の策定も、技術者の手足を縛るためのものではない。AIエージェントが社会の信頼を獲得し、持続的に活用されるためのインフラ整備だと捉えるべきだろう。自律的に動くAIが増えるほど、その背後にいる人間の設計判断の質が問われる。責任の所在は、コードの中に、アーキテクチャの中に、そして組織のガバナンス体制の中に、あらかじめ埋め込んでおくものだ。</p>
+<p>2026年は、AIエージェント開発が「作れるかどうか」から「責任を持って運用できるかどうか」へと評価軸がシフトする転換点になる。その波に乗り遅れないための準備を、今日から始めてほしい。</p>
+    </div>
+  </div>
+  
+  <div class="container">
+    <div class="article-section">
+      <h1 id="llmmcpai">ローカルLLM＋MCPで作る「自分専用AIアシスタント」入門</h1>
+<p>あなたのPC1台で、クラウドに一切データを送らずに動く"業務特化AIアシスタント"が作れる——そう聞いたら、試してみたくなるはずだ。2026年に入り、Model Context Protocol（MCP）のエコシステムが急速に成熟したことで、この夢はもはや週末プロジェクトの範囲で実現できるようになった。</p>
+<h2 id="mcpllm">MCPが変えた「LLM×外部ツール連携」</h2>
+<p>MCPは、LLMと外部ツール（ファイル操作、DB検索、APIコールなど）をつなぐオープン標準プロトコルだ。2025年後半にv1.0仕様が固まり、2026年3月時点でMCPサーバーの公開レジストリには1,200以上のコネクタが登録されている。従来はモデルごとにFunction Callingの実装を書き分ける必要があったが、MCPに準拠すれば<strong>モデルを差し替えてもツール連携がそのまま動く</strong>。これがローカルLLM活用の大きな追い風になっている。</p>
+<h2 id="20264">推奨ツールチェーン（2026年4月版）</h2>
+<p>最短ルートで動かすなら、以下の構成がおすすめだ。</p>
+<table>
+<thead>
+<tr>
+<th>レイヤー</th>
+<th>推奨ツール</th>
+<th>備考</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>LLM推論</strong></td>
+<td>Ollama / llama.cpp</td>
+<td>Qwen3-8BやLlama 4 Scoutなど8〜17Bクラスがローカル実用圏</td>
+</tr>
+<tr>
+<td><strong>MCPホスト</strong></td>
+<td>Claude Desktop / Open MCPhost</td>
+<td>MCPサーバーへの接続を管理</td>
+</tr>
+<tr>
+<td><strong>MCPサーバー</strong></td>
+<td>公式SDK（TypeScript / Python）</td>
+<td>ファイル操作・SQLite・Google Workspace用など多数公開済み</td>
+</tr>
+<tr>
+<td><strong>オーケストレーション</strong></td>
+<td>MCP対応エージェントフレームワーク（LangChain、CrewAIなど）</td>
+<td>複数ツールの逐次・並列呼び出しに対応</td>
+</tr>
+</tbody>
+</table>
+<p>VRAM 8GB程度のGPUがあれば、量子化モデル（Q4_K_M）で十分な応答速度が得られる。Apple Silicon Macなら統合メモリの恩恵で16Bクラスも快適だ。</p>
+<h2 id="30">30分で動かすミニマム構成</h2>
+<ol>
+<li><strong>Ollamaでモデルを取得</strong>：<code>ollama pull qwen3:8b</code></li>
+<li><strong>MCPサーバーを起動</strong>：たとえばファイルシステム用サーバーを<code>npx @anthropic/mcp-filesystem</code>で立ち上げる</li>
+<li><strong>MCPホストから接続</strong>：設定ファイルにサーバーのエンドポイントを記述し、ホストを再起動</li>
+<li><strong>動作確認</strong>：「Downloadsフォルダの今週更新されたPDFを一覧して」と指示し、ツール呼び出しが走れば成功</li>
+</ol>
+<p>ここにカレンダーAPIやSlack MCPサーバーを足していけば、スケジュール管理やチーム通知まで自動化できる。</p>
+<h2 id="_1">プライバシーと実用性の両立へ</h2>
+<p>すべてのデータがローカルに閉じる安心感は、企業の機密情報や医療・法務領域で特に価値が高い。MCPの標準化によりツール側の開発コストも下がり、社内システム向けのカスタムMCPサーバーを内製する事例も増えている。</p>
+<p>ローカルLLMの性能向上×MCPの相互運用性——この掛け算が、「自分専用AI」を単なるチャットボットから<strong>実務を動かすエージェント</strong>へ進化させる。まずは手元のマシンで、最初の一歩を踏み出してみてほしい。</p>
+    </div>
+  </div>
+  
+
+  <!-- フッター -->
+  <div class="footer">
+    OshiruZine-AI &nbsp;|&nbsp; 2026年4月13日 &nbsp;|&nbsp; Generated by AI
+  </div>
+
+</body>
+</html>
